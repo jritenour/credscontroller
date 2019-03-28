@@ -28,7 +28,7 @@ spec:
           - spring-example
         from:
           kind: ImageStreamTag
-          namespace: spring-example
+          namespace: vault-deploy
           name: 'spring-example:latest'
   replicas: 1
   template:
@@ -70,7 +70,7 @@ spec:
               },                                           
               {
                 "name": "VAULT_ADDR",
-                "value": "https://vault.vault-controller.svc.cluster.local:8200"
+                "value": "http://vault-vault-deploy.apps.home.lab"
               },
               {
                 "name": "VAULT_CONTROLLER_ADDR",
@@ -106,9 +106,7 @@ spec:
             - name: "VAULT_CACERT"
               value: "/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt"              
             - name: "VAULT_HOST"
-              value: "vault.vault-controller.svc.cluster.local"
-            - name: "VAULT_PORT"
-              value: "8200"
+              value: "vault-vault-deploy.apps.home.lab"
             - name: "VAULT_TOKEN_FILE"
               value: "/var/run/secrets/vaultproject.io/secret.json"                            
 #             determine the context of the generic backend  
